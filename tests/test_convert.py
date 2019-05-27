@@ -19,6 +19,8 @@ def test_convert():
     assert_equal(d.convert(49), 'XLIX')
     assert_equal(d.convert(1000), 'M')
     assert_equal(d.convert(1000000), '𝕄')
+    assert_equal(d.convert(5000), '𝕍')
+    assert_equal(d.convert(5001), '𝕍I')
 
 
 def test_handle_ordered_groups():
