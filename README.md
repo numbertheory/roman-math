@@ -27,12 +27,12 @@ Arabic numerals are the numbers that most modern people are very familiar with.
 assumption that Romans never used more than 3 of the same numerals in succession.
 For this library, more than three numerals in succession is allowed if necessary.
 
-2. The Romans would put a bar over a numeral to designate "multiply by 1000". So,
+2. The Romans would put an overline over a numeral to designate "multiply by 1000". So,
 5000 would look something like: `⊽`
 
 For this library, 1000 multipliers will be done with double-struck Unicode
-characters, due to the inconsistencies of diacritical marks in how Unicode is
-displayed. "I" has no multiplier, as "M" by itself already represents 1000
+characters, due to the inconsistencies of diacritical marks in most terminals.
+"I" has no multiplier, as "M" by itself already represents 1000
 times one.
 
 | Character     | Arabic number  |
@@ -79,11 +79,11 @@ be used in answers when dividing numbers.  Remainders can be accessed using the
 `remainder` method in the `.divide` function.
 
 ```
->>> roman_numerals.divide('7','2')
-III
+>>> roman_numerals.divide('7','2').value
+'III'
 >>> roman_numerals.divide('7','2').remainder
-I
->>> roman_numerals.divide('7','2') == roman_numerals.divide('6','2')
+'I'
+>>> roman_numerals.divide('7','2').value == roman_numerals.divide('6','2').value
 False
 
 ```
