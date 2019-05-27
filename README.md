@@ -1,6 +1,6 @@
 # Roman Math
 
-Read/translate Roman numerals. Do simple arithmetic with them.
+Read/translate Roman numerals. Do simple arithmetic with them. Work in progress.
 
 ## Definitions
 
