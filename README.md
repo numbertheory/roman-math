@@ -32,7 +32,8 @@ For this library, more than three numerals in succession is allowed if necessary
 
 For this library, 1000 multipliers will be done with double-struck Unicode
 characters, due to the inconsistencies of diacritical marks in how Unicode is
-displayed. "I" has no multiplier, as "M" already represents 1000 times one.
+displayed. "I" has no multiplier, as "M" by itself already represents 1000
+times one.
 
 | Character     | Arabic number  |
 | ------------- |:--------------:|
@@ -42,6 +43,17 @@ displayed. "I" has no multiplier, as "M" already represents 1000 times one.
 | ℂ             | 100000         |
 | 𝔻             | 500000         |
 | 𝕄             | 1000000         |
+
+
+# Representational Subtraction
+
+Subtraction is used in Roman numerals to denote some numbers, like 9 (IX), or 900 (CM).
+The general style is to group thousands, hundreds, tens, and ones together, which
+is also enforced for representational subtraction, and so the subtraction should
+only cross one grouping threshold.  Something like `IM` to denote 999 would not
+be allowed as they belong to groupings that are not neighbors.  Additionally, V is not
+used as a subtractor, so `VL` is not 45.
+
 
 # Exceptions
 
@@ -73,7 +85,5 @@ III
 I
 >>> roman_numerals.divide('7','2') == roman_numerals.divide('6','2')
 False
-
-
 
 ```
