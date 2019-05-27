@@ -30,7 +30,7 @@ For this library, more than three numerals in succession is allowed if necessary
 2. The Romans would put a bar over a numeral to designate "multiply by 1000". So,
 5000 would look something like: `⊽`
 
-For our this library, 1000 multipliers will be done with double-struck Unicode
+For this library, 1000 multipliers will be done with double-struck Unicode
 characters, due to the inconsistencies of diacritical marks in how Unicode is
 displayed. "I" has no multiplier, as "M" already represents 1000 times one.
 
