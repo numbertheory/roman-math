@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import re
 
 
 class Error(Exception):
@@ -10,6 +11,91 @@ class Error(Exception):
 class NotIntegerError(Error):
     """Only integers may be converted to Roman numerals."""
     pass
+
+
+class NotRomanNumeral(Error):
+    """Not a valid Roman Numeral expression"""
+    pass
+
+
+class ConvertToArabicNumerals():
+    def __init__(self):
+        pass
+
+    def convert(self, roman_numerals):
+        roman_string = roman_numerals.upper()
+
+        # Abort if any characters are not valid
+        validate_string = [True for x in list(roman_string)
+                           if x in ['M', 'D', 'C', 'L', 'X', 'V', 'I',
+                                    '𝕍', '𝕏', '𝕃', 'ℂ', '𝔻', '𝕄']]
+
+        if len(validate_string) != len(list(roman_string)):
+            raise NotRomanNumeral
+
+        # Find representational subtraction groups
+        regex = r"(IX)|(IV)|(CM)|(CD)|(XL)|(XC)|(ℂ𝕄)|(ℂ𝔻)|(𝕏ℂ)|(𝕏𝕃)"
+        hits = [[y for y in set(x) if y != ''][0]
+                for x in
+                re.findall(regex, roman_string)]
+        if len(set(hits)) != len(hits):
+            raise NotRomanNumeral
+        else:
+            grouped = [x for x in
+                       re.compile(regex).split(roman_string)
+                       if (x is not None and x != '')]
+
+        groupings_table = {
+            "M": 7,
+            "D": 6,
+            "C": 5,
+            "L": 4,
+            "X": 3,
+            "V": 2,
+            "I": 1,
+            "𝕍": 8,
+            "𝕏": 9,
+            "𝕃": 10,
+            "ℂ": 11,
+            "𝔻": 12,
+            "𝕄": 13
+        }
+        # Abort if groupings are out of order
+        result = 0
+
+        master_table = {
+            "M": 1000,
+            "D": 500,
+            "C": 100,
+            "L": 50,
+            "X": 10,
+            "V": 5,
+            "I": 1,
+            "𝕍": 5000,
+            "𝕏": 10000,
+            "𝕃": 50000,
+            "ℂ": 100000,
+            "𝔻": 500000,
+            "𝕄": 1000000,
+            "IX": 9,
+            "IV": 4,
+            "CM": 900,
+            "CD": 400,
+            "XL": 40,
+            "XC": 90,
+            "ℂ𝕄": 900000,
+            "ℂ𝔻": 400000,
+            "𝕏ℂ": 90000,
+            "𝕏𝕃": 40000
+        }
+        print(grouped)
+        for numeral in grouped:
+            if numeral in list(master_table.keys()):
+                result += master_table[numeral]
+            else:
+                raise NotRomanNumeral
+
+        return result
 
 
 class ConvertToRomanNumerals():
